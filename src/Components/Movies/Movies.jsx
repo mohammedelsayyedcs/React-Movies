@@ -1,10 +1,11 @@
 import React from 'react'
 import './Movies.css'
+import { Outlet } from 'react-router-dom'
 
 export default function Movies() {
     return (
         <div>
-            <h2>Movies</h2>
+            {/* <Outlet /> */}
         </div>
     )
 }

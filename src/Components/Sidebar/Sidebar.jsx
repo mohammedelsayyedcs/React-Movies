@@ -4,7 +4,7 @@ import './Sidebar.css'
 export default function Sidebar() {
   return (
     <div>
-        <h2>Sidebar</h2>
+        <h5>Movies Categories</h5>
     </div>
   )
 }
