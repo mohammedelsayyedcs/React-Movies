@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './NowPlaying.css'
 import { getApi } from '../../AxiosInstance';
+import Movie from '../Movie/Movie';
 
 export default function NowPlaying() {
     const [moviesObj, setMoviesObj] = useState({});
@@ -21,12 +22,12 @@ export default function NowPlaying() {
     }, [])
 
     return (
-        <div>
-            <ul>
-                {moviesObj.results?.map((item) => {
-                    return <li key={item.id}>{item.title}</li>
-                })}
-            </ul>
+        <div className='row container-fluid'>
+            {
+                moviesObj.results?.map((item) => {
+                    return <Movie key={item.id} movie={item} />
+                })
+            }
         </div>
     )
 }
