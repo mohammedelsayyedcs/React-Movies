@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './TopRated.css'
+import { getApi } from '../../AxiosInstance'
+import Movie from '../Movie/Movie';
 
 export default function TopRated() {
+    const [moviesObj, setMoviesObj] = useState({});
+    const url = "/top_rated?language=en-US&page=1";
+
+    const getMovies = async (url) => {
+        try {
+            const res = await getApi.get(url);
+            setMoviesObj(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getMovies(url);
+    }, [])
+
     return (
-        <div>
-            <h3>Top Rated</h3>
+        <div className='row container-fluid'>
+            {
+                moviesObj.results?.map((item) => {
+                    return <Movie key={item.id} movie={item} />
+                })
+            }
         </div>
     )
 }

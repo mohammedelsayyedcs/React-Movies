@@ -9,7 +9,7 @@ export default function Movie({ movie }) {
                 <img src={imageUrl + movie.backdrop_path} className="card-img-top" alt={movie.title} />
                 <div className="card-body">
                     <h5 className="card-title">{movie.title}</h5>
-                    <p className="card-text">{movie.overview.slice(0,50)}</p>
+                    <p className="card-text">{movie.overview.slice(0, 70)}</p>
                     <a className="btn btn-primary">View Details</a>
                 </div>
             </div>

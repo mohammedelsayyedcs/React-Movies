@@ -1,9 +1,11 @@
-.card-text{
+.card-text {
+    height: 70px;
+}
+
+.card-title {
     height: 50px;
 }
-.card-title{
-    height: 40px;
-}
-img{
+
+img {
     height: 250px;
 }
