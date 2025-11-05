@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './NowPlaying.css'
-import { getApi } from '../../AxiosInstance';
+import { getMoviesListApi } from '../../AxiosInstance';
 import Movie from '../Movie/Movie';
 
 export default function NowPlaying() {
@@ -9,7 +9,7 @@ export default function NowPlaying() {
 
     const getMoviesObject = async (url) => {
         try {
-            const res = await getApi.get(url);
+            const res = await getMoviesListApi.get(url);
             setMoviesObj(res.data);
         } catch (error) {
             console.log(error);

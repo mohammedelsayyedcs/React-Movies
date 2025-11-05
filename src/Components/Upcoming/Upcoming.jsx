@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Upcoming.css'
-import { getApi } from '../../AxiosInstance'
+import { getMoviesListApi } from '../../AxiosInstance'
 import Movie from '../Movie/Movie'
 
 export default function Upcoming() {
@@ -11,23 +11,23 @@ export default function Upcoming() {
     // Fetch Upcoming Movies
     const getMovies = async (url) => {
         try {
-            const res = await getApi.get(url);
-            setMoviesObj(res.data);           
+            const res = await getMoviesListApi.get(url);
+            setMoviesObj(res.data);
         } catch (error) {
             console.log(error);
         }
     }
 
     // Call getMovies one time in first page load
-    useEffect(()=>{
+    useEffect(() => {
         getMovies(url)
-    },[])
+    }, [])
 
     return (
         <div className='row container-fluid`'>
             {
-                moviesObj.results?.map((item)=>{
-                    return <Movie key={item.id} movie={item}/>
+                moviesObj.results?.map((item) => {
+                    return <Movie key={item.id} movie={item} />
                 })
             }
         </div>
