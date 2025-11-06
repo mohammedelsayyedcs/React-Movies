@@ -7,6 +7,17 @@ export default function Header() {
     // Get the variables I want from AppSettings
     const { theme, changeTheme, user } = useContext(AppSettings);
 
+    // Change the theme of the whole website
+    // This method will be executed once user clicks on the themeIcon
+    const toggleTheme = () => {
+        theme.themeStyle == 'light'
+            ? changeTheme({ themeIcon: 'Light', themeStyle: 'dark' })
+            : changeTheme({ themeIcon: 'Dark', themeStyle: 'light' })
+    }
+
+    // Apply theme.themeStyle for the whole website
+    document.documentElement.setAttribute('data-bs-theme', theme.themeStyle);
+
     return (
         <div className='header'>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -30,7 +41,7 @@ export default function Header() {
                                 <NavLink to={'top-rated'} className="nav-link" aria-current="page">Top Rated</NavLink>
                             </li>
                             <li className="nav-item px-2">
-                                <a className="btn btn-outline-success" aria-current="page">{theme.themeIcon}</a>
+                                <a className="btn btn-outline-success" aria-current="page" onClick={toggleTheme}>{theme.themeIcon}</a>
                             </li>
                         </ul>
 
