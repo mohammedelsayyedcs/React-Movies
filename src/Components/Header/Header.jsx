@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Header.css'
 import { NavLink } from 'react-router-dom'
+import { AppSettings } from '../../AppSettingsContext'
 
 export default function Header() {
+    // Get the variables I want from AppSettings
+    const { theme, changeTheme, user } = useContext(AppSettings);
+
     return (
         <div className='header'>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme='dark'>
+            <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container">
-                    <NavLink to={'/'} className="navbar-brand text-danger fw-bold fs-4" >Movies</NavLink>
+                    <NavLink to={'/'} className="navbar-brand text-danger fw-bold fs-4" >{user} Movies</NavLink>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -24,6 +28,9 @@ export default function Header() {
                             </li>
                             <li className="nav-item px-2">
                                 <NavLink to={'top-rated'} className="nav-link" aria-current="page">Top Rated</NavLink>
+                            </li>
+                            <li className="nav-item px-2">
+                                <a className="btn btn-outline-success" aria-current="page">{theme.themeIcon}</a>
                             </li>
                         </ul>
 
