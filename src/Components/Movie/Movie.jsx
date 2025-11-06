@@ -13,7 +13,7 @@ export default function Movie({ movie }) {
                 <div className="card-body">
                     <h5 className="card-title">{movie.title}</h5>
                     <p className="card-text">{movie.overview.slice(0, 70)}</p>
-                    <a className="btn btn-outline-primary">View Details</a>
+                    <a className="btn btn-outline-info">View Details</a>
                 </div>
             </div>
         </div>

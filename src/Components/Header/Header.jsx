@@ -11,8 +11,8 @@ export default function Header() {
     // This method will be executed once user clicks on the themeIcon
     const toggleTheme = () => {
         theme.themeStyle == 'light'
-            ? changeTheme({ themeIcon: 'Light', themeStyle: 'dark' })
-            : changeTheme({ themeIcon: 'Dark', themeStyle: 'light' })
+            ? changeTheme({ themeIcon: 'bi bi-sun text-warning', themeStyle: 'dark' })
+            : changeTheme({ themeIcon: 'bi bi-moon-fill', themeStyle: 'light' })
     }
 
     // Apply theme.themeStyle for the whole website
@@ -20,7 +20,7 @@ export default function Header() {
 
     return (
         <div className='header'>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg bg-body-tertiary py-3">
                 <div className="container">
                     <NavLink to={'/'} className="navbar-brand text-danger fw-bold fs-4" >{user} Movies</NavLink>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,10 +40,13 @@ export default function Header() {
                             <li className="nav-item px-2">
                                 <NavLink to={'top-rated'} className="nav-link" aria-current="page">Top Rated</NavLink>
                             </li>
-                            <li className="nav-item px-2">
-                                <a className="btn btn-outline-success" aria-current="page" onClick={toggleTheme}>{theme.themeIcon}</a>
-                            </li>
                         </ul>
+                        {/* Theme Icon */}
+                        <div className="nav-item px-2">
+                            <a className="btn border-0 fs-4" aria-current="page" onClick={toggleTheme}>
+                                <i className={theme.themeIcon} />
+                            </a>
+                        </div>
 
                     </div>
                 </div>

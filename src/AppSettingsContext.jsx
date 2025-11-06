@@ -6,7 +6,7 @@ const AppSettings = createContext();
 // Create the component
 const AppSettingsContext = ({ children }) => {
     // Variables for our data
-    const [theme, setTheme] = useState({ themeIcon: 'Dark', themeStyle: 'light' });
+    const [theme, setTheme] = useState({ themeIcon: 'bi bi-moon-fill', themeStyle: 'light' });
     const [user, setUser] = useState('Mohamed');
     const [dir, setDir] = useState('ltr');
 
