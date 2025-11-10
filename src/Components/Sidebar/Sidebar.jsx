@@ -24,14 +24,16 @@ export default function Sidebar() {
     <div>
       <h6 className='text-info fw-bold'>Movies Categories</h6>
 
-      {genres.map((item) => {
-        return <div class="form-check py-1 ps-5">
-          <input class="form-check-input" type="radio" name="moviesGenres" id={item.id} />
-          <label class="form-check-label fs-6 fw-medium" for={item.id}>
-            {item.name}
-          </label>
-        </div>
-      })}
+      {
+        genres.map((item) => {
+          return <div key={item.id} className="form-check py-1 ps-5">
+            <input className="form-check-input" type="radio" name="moviesGenres" id={item.id} />
+            <label className="form-check-label fs-6 fw-medium" htmlFor={item.id}>
+              {item.name}
+            </label>
+          </div>
+        })
+      }
 
     </div>
   )

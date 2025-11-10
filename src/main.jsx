@@ -5,11 +5,16 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { AppSettingsContext } from './AppSettingsContext.jsx'
 
+import { Provider } from 'react-redux'
+import store from './ReduxTK/store.js'
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AppSettingsContext>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </AppSettingsContext>
     </BrowserRouter>
   </StrictMode>
