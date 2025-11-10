@@ -1,8 +1,15 @@
 import React from 'react'
 import './Movie.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function Movie({ movie }) {
-    const imageUrl = 'https://image.tmdb.org/t/p/w500'
+    const imageUrl = 'https://image.tmdb.org/t/p/w500';
+
+    const navTo = useNavigate();
+    const showMovieDetails = (id) => {
+        navTo(`/${id}`);
+    }
+
     return (
         <div className='col-sm-12 col-md-6 col-lg-4 py-3'>
             <div className="card border-0 position-relative px-1">
@@ -13,7 +20,7 @@ export default function Movie({ movie }) {
                 <div className="card-body">
                     <h5 className="card-title">{movie.title}</h5>
                     <p className="card-text">{movie.overview.slice(0, 70)}</p>
-                    <a className="btn btn-outline-info">View Details</a>
+                    <a className="btn btn-outline-info" onClick={() => { showMovieDetails(movie.id) }}>View Details</a>
                 </div>
             </div>
         </div>

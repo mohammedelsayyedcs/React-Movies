@@ -11,6 +11,7 @@ import NowPlaying from './Components/NowPlaying/NowPlaying.jsx'
 import Popular from './Components/Popular/Popular.jsx'
 import Upcoming from './Components/Upcoming/Upcoming.jsx'
 import TopRated from './Components/TopRated/TopRated.jsx'
+import MovieDetails from './Components/MovieDetails/MovieDetails.jsx'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='popular' element={<Popular />} />
           <Route path='upcoming' element={<Upcoming />} />
           <Route path='top-rated' element={<TopRated />} />
+          <Route path='/:mId' element={<MovieDetails />} />
         </Route>
       </Routes>
 
