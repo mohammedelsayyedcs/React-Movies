@@ -18,7 +18,7 @@ export default function MovieDetails() {
     }
 
     return (
-        <div className='row mt-3'>
+        <div className='row mt-3 ms-2'>
             <div className='position-relative col-sm-12 col-md-6 pe-5'>
                 <img src={imageUrl + movie.poster_path} className="detail-img card-img-top" alt={movie.title} />
                 <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
