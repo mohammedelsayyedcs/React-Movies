@@ -5,10 +5,10 @@ import { Outlet } from 'react-router-dom'
 export default function Home() {
     return (
         <div className='body row container-fluid'>
-            <div className='col-2'>
+            <div className='col-sm-12 col-lg-2'>
                 <Sidebar />
             </div>
-            <div className='col-10'>
+            <div className='col-sm-12 col-lg-10'>
                 <Outlet />
             </div>
         </div>
