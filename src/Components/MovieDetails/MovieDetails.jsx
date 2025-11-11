@@ -26,7 +26,7 @@ export default function MovieDetails() {
                 </span>
             </div>
             <div className='col-sm-12 col-md-6 px-5 mt-5'>
-                <h3 className="py-5 text-danger fw-bold">{movie.title}</h3>
+                <h3 className="py-5 text-info fw-bold">{movie.title}</h3>
                 <p className="lh-lg lead">{movie.overview}</p>
                 <a className="btn btn-warning my-5 px-4 py-2" onClick={goBack}>Go Back</a>
             </div>
