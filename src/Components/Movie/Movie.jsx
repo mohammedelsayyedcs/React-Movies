@@ -18,8 +18,8 @@ export default function Movie({ movie }) {
                 </span>
                 <img src={imageUrl + movie.backdrop_path} className="card-img-top" alt={movie.title} />
                 <div className="card-body">
-                    <h5 className="card-title">{movie.title}</h5>
-                    <p className="card-text">{movie.overview.slice(0, 70)}</p>
+                    <h5 className="card-title text-danger">{movie.title}</h5>
+                    <p className="card-text text-truncate">{movie.overview}</p>
                     <a className="btn btn-outline-info" onClick={() => { showMovieDetails(movie.id) }}>View Details</a>
                 </div>
             </div>

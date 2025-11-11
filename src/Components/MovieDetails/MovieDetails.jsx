@@ -18,7 +18,7 @@ export default function MovieDetails() {
     }
 
     return (
-        <div className='row'>
+        <div className='row mt-3'>
             <div className='position-relative col-sm-12 col-md-6 pe-5'>
                 <img src={imageUrl + movie.poster_path} className="detail-img card-img-top" alt={movie.title} />
                 <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
@@ -26,9 +26,9 @@ export default function MovieDetails() {
                 </span>
             </div>
             <div className='col-sm-12 col-md-6 px-5 mt-5'>
-                <h5 className="py-5">{movie.title}</h5>
-                <p className="">{movie.overview}</p>
-                <a className="btn btn-warning my-5" onClick={goBack}>Go Back</a>
+                <h3 className="py-5 text-danger fw-bold">{movie.title}</h3>
+                <p className="lh-lg lead">{movie.overview}</p>
+                <a className="btn btn-warning my-5 px-4 py-2" onClick={goBack}>Go Back</a>
             </div>
         </div>
     )
