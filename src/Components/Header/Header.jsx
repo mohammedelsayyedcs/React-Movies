@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { AppSettings } from '../../AppSettingsContext'
 
 export default function Header() {
-    // Get the variables I want from AppSettings
+    // Get the variables I want from AppSettings (React Context)
     const { theme, changeTheme, user } = useContext(AppSettings);
 
     // Change the theme of the whole website

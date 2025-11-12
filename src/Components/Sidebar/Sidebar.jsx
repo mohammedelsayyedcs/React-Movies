@@ -21,7 +21,7 @@ export default function Sidebar() {
   }, [])
 
   return (
-    <div className='border border-3 py-3 px-3'>
+    <div className='border border-3 py-3 px-3 lead'>
       <h6 className='text-info fw-bold'>Movies Categories</h6>
 
       {
