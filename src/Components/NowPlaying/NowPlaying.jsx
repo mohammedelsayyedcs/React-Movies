@@ -1,37 +1,31 @@
-import React, { useEffect, useState } from 'react'
 import './NowPlaying.css'
-import { getMoviesListApi } from '../../AxiosInstance';
 import Movie from '../Movie/Movie';
-
-import { useSelector, useDispatch } from 'react-redux';
 import { setMoviesObj } from '../../ReduxTK/moviesSlice';
+import { useEffect } from 'react';
+
+import { useGetAllMoviesQuery } from '../../ReduxTK/moviesApiSlice';
+import { useDispatch } from 'react-redux';
 
 export default function NowPlaying() {
     // Redux
+    const { data, error, isLoading } = useGetAllMoviesQuery({
+        category: 'now_playing',
+        pageNum: 2,
+    })
+
+    // Store movies globally
     const dispatch = useDispatch();
-    const moviesObj = useSelector(state => state.movies.moviesObj);
-
-    // const [moviesObj, setMoviesObj] = useState({});
-    const url = "/now_playing?language=en-US&page=1";
-
-    const getMoviesObject = async (url) => {
-        try {
-            const res = await getMoviesListApi.get(url);
-            // setMoviesObj(res.data);
-            dispatch(setMoviesObj(res.data))
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     useEffect(() => {
-        getMoviesObject(url);
-    }, [])
+        dispatch(setMoviesObj(data))
+    }, [data])
+
+    if (error) return <h4 className='text-danger d-flex justify-content-center align-items-center min-vh-100'>Error: The required page is not found ...</h4>
+    if (isLoading) return <h4 className='text-info d-flex justify-content-center align-items-center min-vh-100'>Loading ...</h4>
 
     return (
         <div className='row container-fluid'>
             {
-                moviesObj.results?.map((item) => {
+                data.results?.map((item) => {
                     return <Movie key={item.id} movie={item} />
                 })
             }
