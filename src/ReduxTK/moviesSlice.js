@@ -15,7 +15,14 @@ const moviesSlice = createSlice({
             state.selectedMovies = [];
         },
         setCartArr: (state, action) => {
-            state.cartArr = action.payload;
+            state.cartArr.find(item => item.id === action.payload.id)
+                ? ''
+                : state.cartArr.push(action.payload);
+
+        },
+        removeFromCart: (state, action) => {
+            const movieIndex = state.cartArr.findIndex((item) => item.id === action.payload.id)
+            state.cartArr.splice(movieIndex, 1)
         },
         setSelectedMoviesByGenreId: (state, action) => {
             const genreId = Number(action.payload)
@@ -30,6 +37,7 @@ const moviesSlice = createSlice({
 export const {
     setMoviesObj,
     setCartArr,
+    removeFromCart,
     setSelectedMoviesByGenreId
 } = moviesSlice.actions;
 

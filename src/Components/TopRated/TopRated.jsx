@@ -40,7 +40,7 @@ export default function TopRated() {
         <div className='row container-fluid'>
             {
                 moviesToShow.map((item) => {
-                    return <Movie key={item.id} movie={item} />
+                    return <Movie key={item.id} movie={item} isModal={false} />
                 })
             }
         </div>

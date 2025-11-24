@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import './Header.css'
 import { NavLink } from 'react-router-dom'
 import { AppSettings } from '../../AppSettingsContext'
+import Cart from '../Cart/Cart';
 
 export default function Header() {
     // Get the variables I want from AppSettings (React Context)
@@ -41,6 +42,10 @@ export default function Header() {
                                 <NavLink to={'top-rated'} className="nav-link" aria-current="page">Top Rated</NavLink>
                             </li>
                         </ul>
+
+                        {/* Cart */}
+                        <Cart />
+
                         {/* Theme Icon */}
                         <div className="nav-item px-2">
                             <a className="btn border-0 fs-4" aria-current="page" onClick={toggleTheme}>

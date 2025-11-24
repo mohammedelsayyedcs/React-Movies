@@ -10,7 +10,9 @@ export default function MovieDetails() {
 
     // Redux: Get movie details from moviesObj in moviesSlice
     const moviesObj = useSelector(state => state.movies.moviesObj);
-    const movie = moviesObj.results?.find((item) => item.id == mId);
+    const moviesCartArr = useSelector(state => state.movies.cartArr);
+    const movie = moviesObj.results?.find((item) => item.id == mId)
+        || moviesCartArr.find(item => item.id == mId);
 
     // Methods
     const goBack = () => {

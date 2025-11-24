@@ -1,7 +1,7 @@
 import './NowPlaying.css'
 import Movie from '../Movie/Movie';
 import { setMoviesObj } from '../../ReduxTK/moviesSlice';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 import { useGetAllMoviesQuery } from '../../ReduxTK/moviesApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,7 +27,7 @@ export default function NowPlaying() {
     let genreSelected = useSelector(state => state.movies.genreSelected);
 
     let moviesToShow;
-    if (!genreSelected) moviesToShow = data?.results
+    if (!genreSelected && selectedMovies.length === 0) moviesToShow = data?.results
     else moviesToShow = selectedMovies
 
     if (error) return <Error />
@@ -38,7 +38,7 @@ export default function NowPlaying() {
         <div className='row container-fluid'>
             {
                 moviesToShow.map((item) => {
-                    return <Movie key={item.id} movie={item} />
+                    return <Movie key={item.id} movie={item} isModal={false} />
                 })
             }
         </div>

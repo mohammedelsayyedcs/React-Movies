@@ -9,3 +9,37 @@
 img {
     height: 250px;
 }
+
+.modal-movie {
+    padding: 5px !important;
+}
+
+.modal-card {
+    transform: scale(0.9);
+    margin: 0 auto;
+}
+
+/* Make image smaller */
+.modal-img {
+    height: 30%;
+    object-fit: cover;
+}
+
+/* Reduce title and text size in modal */
+.modal-card .card-title {
+    font-size: 1.4rem;
+}
+
+.modal-card .card-text {
+    font-size: 1.2rem;
+}
+
+/* Smaller button spacing */
+.modal-card .btn {
+    padding: 4px 10px;
+    font-size: 1rem;
+}
+
+.modal-badge {
+    font-size: medium !important;
+}
