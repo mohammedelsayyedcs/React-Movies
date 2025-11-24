@@ -5,6 +5,8 @@ import Movie from '../Movie/Movie';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMoviesObj } from '../../ReduxTK/moviesSlice';
 import { useGetAllMoviesQuery } from '../../ReduxTK/moviesApiSlice';
+import EmptyMovies from '../EmptyMovies/EmptyMovies';
+import Loading from '../Loading/Loading';
 
 export default function Popular() {
     // Redux
@@ -30,8 +32,9 @@ export default function Popular() {
     else moviesToShow = selectedMovies
 
     // Handle error and isLoading
-    if (error) return <h4 className='text-danger d-flex justify-content-center align-items-center min-vh-100'>Error: The required page is not found ...</h4>
-    if (isLoading) return <h4 className='text-info d-flex justify-content-center align-items-center min-vh-100'>Loading ...</h4>
+    if (error) return <Error />
+    if (isLoading) return <Loading />
+    if (moviesToShow.length === 0) return <EmptyMovies />
 
     return (
         <div className='row container-fluid'>

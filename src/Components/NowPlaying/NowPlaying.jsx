@@ -5,6 +5,8 @@ import { useEffect, useRef } from 'react';
 
 import { useGetAllMoviesQuery } from '../../ReduxTK/moviesApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import EmptyMovies from '../EmptyMovies/EmptyMovies';
+import Loading from '../Loading/Loading';
 
 export default function NowPlaying() {
     // Redux
@@ -28,11 +30,10 @@ export default function NowPlaying() {
     if (!genreSelected) moviesToShow = data?.results
     else moviesToShow = selectedMovies
 
-    if (error) return <h4 className='text-danger d-flex justify-content-center align-items-center min-vh-100'>Error: The required page is not found ...</h4>
-    if (isLoading) return <h4 className='text-info d-flex justify-content-center align-items-center min-vh-100'>Loading ...</h4>
-    if (moviesToShow.length == 0) return <div className="d-flex justify-content-center align-items-center min-vh-100">
-        <h4 className="text-muted text-center">{"No movies available for the selected genre."}</h4>
-    </div>
+    if (error) return <Error />
+    if (isLoading) return <Loading />
+    if (moviesToShow.length == 0) return <EmptyMovies />
+
     return (
         <div className='row container-fluid'>
             {

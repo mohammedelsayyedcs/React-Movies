@@ -2,6 +2,7 @@ import './Sidebar.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedMoviesByGenreId } from '../../ReduxTK/moviesSlice';
 import { useGetAllGenresQuery } from '../../ReduxTK/moviesApiSlice';
+import Loading from '../Loading/Loading';
 
 export default function Sidebar() {
 
@@ -15,8 +16,8 @@ export default function Sidebar() {
   }
 
   // Handle error and isLoading
-  if (error) return <h4 className='text-danger d-flex justify-content-center align-items-center min-vh-100'>Error: The required page is not found ...</h4>
-  if (isLoading) return <h4 className='text-info d-flex justify-content-center align-items-center min-vh-100'>Loading ...</h4>
+  if (error) return <Error />
+  if (isLoading) return <Loading />
 
   return (
     <div className='border border-3 py-3 px-3 lead'>
