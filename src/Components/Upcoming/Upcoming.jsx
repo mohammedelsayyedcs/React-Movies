@@ -7,12 +7,14 @@ import { setMoviesObj, setSelectedMoviesByGenreId } from '../../ReduxTK/moviesSl
 import { useGetAllMoviesQuery } from '../../ReduxTK/moviesApiSlice'
 import Loading from '../Loading/Loading'
 import EmptyMovies from '../EmptyMovies/EmptyMovies'
+import Paggination from '../Paggination/Paggination'
 
 export default function Upcoming() {
     // Redux
+    const pageNumber = useSelector(state => state.movies.pageNumUpcoming)
     const { data, error, isLoading } = useGetAllMoviesQuery({
         category: "upcoming",
-        pageNum: 1,
+        pageNum: pageNumber,
     })
 
     // Get all movies one time in first page load
@@ -41,6 +43,7 @@ export default function Upcoming() {
                     return <Movie key={item.id} movie={item} isModal={false} />
                 })
             }
+            <Paggination name={'upcoming'} />
         </div>
     )
 }

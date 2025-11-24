@@ -7,12 +7,15 @@ import { useGetAllMoviesQuery } from '../../ReduxTK/moviesApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import EmptyMovies from '../EmptyMovies/EmptyMovies';
 import Loading from '../Loading/Loading';
+import Paggination from '../Paggination/Paggination';
 
 export default function NowPlaying() {
     // Redux
+    const pageNumber = useSelector(state => state.movies.pageNumNowPlaying)
+    // const [pageNumber, setPageNumber] = useState()
     const { data, error, isLoading } = useGetAllMoviesQuery({
         category: 'now_playing',
-        pageNum: 3,
+        pageNum: pageNumber,
     })
 
     // Store movies globally
@@ -41,6 +44,7 @@ export default function NowPlaying() {
                     return <Movie key={item.id} movie={item} isModal={false} />
                 })
             }
+            <Paggination name={'now_playing'} />
         </div>
     )
 }

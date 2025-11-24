@@ -8,12 +8,14 @@ import { useGetAllMoviesQuery } from '../../ReduxTK/moviesApiSlice';
 import Error from '../Error/Error';
 import Loading from '../Loading/Loading';
 import EmptyMovies from '../EmptyMovies/EmptyMovies';
+import Paggination from '../Paggination/Paggination';
 
 export default function TopRated() {
     // Redux
+    const pageNumber = useSelector(state => state.movies.pageNumTopRated)
     const { data, error, isLoading } = useGetAllMoviesQuery({
         category: "top_rated",
-        pageNum: 1,
+        pageNum: pageNumber,
     })
 
     // Store movies globally
@@ -43,6 +45,7 @@ export default function TopRated() {
                     return <Movie key={item.id} movie={item} isModal={false} />
                 })
             }
+            <Paggination name="top_rated" />
         </div>
     )
 }

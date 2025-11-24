@@ -7,12 +7,14 @@ import { setMoviesObj } from '../../ReduxTK/moviesSlice';
 import { useGetAllMoviesQuery } from '../../ReduxTK/moviesApiSlice';
 import EmptyMovies from '../EmptyMovies/EmptyMovies';
 import Loading from '../Loading/Loading';
+import Paggination from '../Paggination/Paggination';
 
 export default function Popular() {
     // Redux
+    const pageNumber = useSelector(state => state.movies.pageNumPopular)
     const { data, error, isLoading } = useGetAllMoviesQuery({
         category: "popular",
-        pageNum: 1
+        pageNum: pageNumber
     });
 
     // Get all movies one time in first page load and Store movies globally
@@ -43,6 +45,7 @@ export default function Popular() {
                     return <Movie key={item.id} movie={item} isModal={false} />
                 })
             }
+            <Paggination name="popular" />
         </div>
     )
 }
