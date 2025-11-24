@@ -2,7 +2,6 @@ import React from 'react'
 import './MovieDetails.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
-import { setSelectedMovieById } from '../../ReduxTK/moviesSlice';
 
 export default function MovieDetails() {
     const imageUrl = 'https://image.tmdb.org/t/p/w500';
@@ -11,10 +10,7 @@ export default function MovieDetails() {
 
     // Redux: Get movie details from moviesObj in moviesSlice
     const moviesObj = useSelector(state => state.movies.moviesObj);
-    // const movie = moviesObj.results?.find((item) => item.id == mId); OR the following
-    const dispatch = useDispatch()
-    dispatch(setSelectedMovieById(mId))
-    const movie = useSelector((state) => state.movies.selectedMovies)
+    const movie = moviesObj.results?.find((item) => item.id == mId);
 
     // Methods
     const goBack = () => {

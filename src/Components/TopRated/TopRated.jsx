@@ -16,8 +16,17 @@ export default function TopRated() {
     // Store movies globally
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(setMoviesObj(data))
+        if (data) dispatch(setMoviesObj(data))
     }, [data])
+
+
+    // Define movies to show
+    const selectedMovies = useSelector((state) => state.movies.selectedMovies);
+    let genreSelected = useSelector(state => state.movies.genreSelected);
+
+    let moviesToShow;
+    if (!genreSelected) moviesToShow = data?.results
+    else moviesToShow = selectedMovies
 
     // Handle error and isLoading
     if (error) return <h4 className='text-danger d-flex justify-content-center align-items-center min-vh-100'>Error: The required page is not found ...</h4>
@@ -26,7 +35,7 @@ export default function TopRated() {
     return (
         <div className='row container-fluid'>
             {
-                data.results?.map((item) => {
+                moviesToShow.map((item) => {
                     return <Movie key={item.id} movie={item} />
                 })
             }

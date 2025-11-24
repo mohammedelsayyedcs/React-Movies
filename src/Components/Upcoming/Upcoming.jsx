@@ -3,7 +3,7 @@ import './Upcoming.css'
 import { getMoviesListApi } from '../../AxiosInstance'
 import Movie from '../Movie/Movie'
 import { useDispatch, useSelector } from 'react-redux'
-import { setMoviesObj } from '../../ReduxTK/moviesSlice'
+import { setMoviesObj, setSelectedMoviesByGenreId } from '../../ReduxTK/moviesSlice'
 import { useGetAllMoviesQuery } from '../../ReduxTK/moviesApiSlice'
 
 export default function Upcoming() {
@@ -12,11 +12,20 @@ export default function Upcoming() {
         category: "upcoming",
         pageNum: 1,
     })
-    // Call getMovies one time in first page load
+
+    // Get all movies one time in first page load
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setMoviesObj(data));
+        if (data) dispatch(setMoviesObj(data));
     }, [data])
+
+    // Define movies to show
+    const selectedMovies = useSelector((state) => state.movies.selectedMovies);
+    let genreSelected = useSelector(state => state.movies.genreSelected);
+
+    let moviesToShow;
+    if (!genreSelected) moviesToShow = data?.results
+    else moviesToShow = selectedMovies
 
     // Handle error and isLoading
     if (error) return <h4 className='text-danger d-flex justify-content-center align-items-center min-vh-100'>Error: The required page is not found ...</h4>
@@ -25,7 +34,7 @@ export default function Upcoming() {
     return (
         <div className='row container-fluid`'>
             {
-                data.results?.map((item) => {
+                moviesToShow.map((item) => {
                     return <Movie key={item.id} movie={item} />
                 })
             }

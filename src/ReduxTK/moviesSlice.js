@@ -6,22 +6,32 @@ const moviesSlice = createSlice({
         moviesObj: {},
         cartArr: [],
         selectedMovies: [],
+        genreSelected: false,
     },
     reducers: {
         setMoviesObj: (state, action) => {
             state.moviesObj = action.payload;
+            state.genreSelected = false;
+            state.selectedMovies = [];
         },
         setCartArr: (state, action) => {
             state.cartArr = action.payload;
         },
-        setSelectedMovieById: (state, action) => {
-            const id = Number(action.payload)
-            state.selectedMovies = state.moviesObj?.results?.find((item) => item.id === id)
-        },
+        setSelectedMoviesByGenreId: (state, action) => {
+            const genreId = Number(action.payload)
+            state.genreSelected = true;
+            state.selectedMovies
+                = state.moviesObj?.results?.filter((item) => item.genre_ids.includes(genreId))
+        }
     }
 })
 
 // This export for Component which uses useDespatch to update the state
-export const { setMoviesObj, setCartArr, setSelectedMovieById } = moviesSlice.actions;
+export const {
+    setMoviesObj,
+    setCartArr,
+    setSelectedMoviesByGenreId
+} = moviesSlice.actions;
+
 // This export for store.js (Global Store)
 export default moviesSlice.reducer;

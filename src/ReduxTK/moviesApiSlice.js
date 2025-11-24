@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const moviesApiSlice = createApi({
     reducerPath: "moviesApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://api.themoviedb.org/3/movie/",
+        baseUrl: "https://api.themoviedb.org/3",
         prepareHeaders: (headers) => {
             headers.set("accept", "application/json");
             headers.set(
@@ -13,13 +13,17 @@ export const moviesApiSlice = createApi({
             return headers;
         }
     }),
-    tagTypes: ["Movies"],
+    tagTypes: ["Movies", "Genres"],
     endpoints: (builder) => ({
         getAllMovies: builder.query({
-            query: ({ category, pageNum }) => `${category}?language=en-US&page=${pageNum}`,
+            query: ({ category, pageNum }) => `/movie/${category}?language=en-US&page=${pageNum}`,
             providesTags: ['Movies'],
+        }),
+        getAllGenres: builder.query({
+            query: () => '/genre/movie/list?language=en',
+            providesTags: ['Genres'],
         })
     })
 })
 
-export const { useGetAllMoviesQuery } = moviesApiSlice
+export const { useGetAllMoviesQuery, useGetAllGenresQuery } = moviesApiSlice
